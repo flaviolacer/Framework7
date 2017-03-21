@@ -13242,7 +13242,8 @@
                 };
     
                 for (var prop in props) {
-                    initialFullValue = window.getComputedStyle(el, null).getPropertyValue(prop).replace(',', '.');
+                    var fullValue = window.getComputedStyle(el, null).getPropertyValue(prop) || "0"; // patch android 4
+                    initialFullValue = fullValue.replace(',', '.');
                     initialValue = parseFloat(initialFullValue);
                     unit = initialFullValue.replace(initialValue, '');
                     finalValue = props[prop];
